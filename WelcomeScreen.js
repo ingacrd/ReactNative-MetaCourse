@@ -1,9 +1,32 @@
 
-import { ScrollView, Text, StyleSheet, Image, View } from 'react-native';
+import { ScrollView, Text, StyleSheet, Image, View, useColorScheme, Appearance } from 'react-native';
+import { useEffect, useState } from 'react';
 
 export default function WelcomeScreen() {
+
+   const colorScheme = useColorScheme();
+  // const [colorScheme, setColorScheme] = useState(Appearance.getColorScheme());
+
+  // useEffect(() => {
+  //   const subscription = Appearance.addChangeListener(({ colorScheme }) => {
+  //     setColorScheme(colorScheme);
+  //   });
+
+  //   return () => subscription.remove();
+  // }, []);
+
+
+
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView 
+    style={[
+      styles.container,
+      colorScheme === 'light'? {
+        backgroundColor: '#EDEFEE'
+      }:{backgroundColor: '#333333'
+      },
+    ]}
+    >
         <View style={styles.headerWrapper}>
             <Image 
             style={styles.image}
@@ -12,15 +35,28 @@ export default function WelcomeScreen() {
             accessible={true}
             accessibilityLabel={'Little Lemon Logo'}
             />
-            <Text style={styles.headerText}>Little Lemon</Text>
+            <Text style={[
+              styles.headerText,
+              colorScheme === 'light'? {
+                color: '#333333'
+              }:{color: '#EDEFEE'
+              },
+              ]}>Little Lemon</Text>
         </View>
         
      
-      <Text style={styles.regularText}>
+      <Text style={[
+        styles.regularText,
+        colorScheme === 'light'? {
+            color: '#333333'
+          }:{color: '#EDEFEE'
+          },
+        ]}>
         Little Lemon is a charming neighborhood bistro that serves simple food
         and classic cocktails in a lively but casual environment. We would love
         to hear more about your experience with us!
       </Text>
+      <Text>Mode: {colorScheme}</Text>
     </ScrollView>
   );
 }
@@ -42,7 +78,7 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     paddingBottom: 10,
     fontSize: 30,
-    color: '#EDEFEE',
+
     textAlign: 'center',
 
   },
@@ -50,7 +86,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     padding: 20,
     marginVertical: 8,
-    color: '#EDEFEE',
+
     textAlign: 'center',
   },
   image: {

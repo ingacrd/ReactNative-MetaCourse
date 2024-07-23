@@ -5,19 +5,19 @@ const colorScheme = useColorScheme();
 
 return ( 
 <ScrollView 
-style={[ 
-styles.container, 
-colorScheme === 'light' 
-? { backgroundColor: '#fff' } 
-: { backgroundColor: '#333333' }, 
-]}> 
-<Image 
-style={styles.logo} 
- source={require('../img/littleLemonLogo.png')} 
-resizeMode="center" 
-accessible={true} 
-accessibilityLabel={'Little Lemon Logo'} 
-/> 
+    style={[ 
+    styles.container, 
+    colorScheme === 'light' 
+    ? { backgroundColor: '#fff' } 
+    : { backgroundColor: '#333333' }, 
+    ]}> 
+    <Image 
+        style={styles.logo} 
+        source={require('../img/littleLemonLogo.png')} 
+        resizeMode="center" 
+        accessible={true} 
+        accessibilityLabel={'Little Lemon Logo'} 
+    /> 
     <Text style={styles.regular}>Color Scheme: {colorScheme}</Text>
   
 </ScrollView> 

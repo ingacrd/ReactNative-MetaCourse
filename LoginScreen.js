@@ -1,21 +1,21 @@
 import { ScrollView, Text, StyleSheet, TextInput, Pressable} from 'react-native';
 import { useState } from 'react';
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
 
   const [email, onChangeEmail] = useState('');
   const [password, onChangePassword] = useState('');
-  const [userLogged, setUserLogged] = useState(false);
+  // const [userLogged, setUserLogged] = useState(false);
   
   return (
     <ScrollView style={styles.container}>
 
       <Text style={styles.headerText}>Welcome to Little Lemon</Text>
-      {userLogged?
+      {/* {userLogged?
       <>
       <Text style={styles.headerText}>You are Logged in!</Text>
       </> :
-      <>
+      <> */}
       <Text style={styles.regularText}>Login to continue </Text>
       <TextInput
         style = {styles.inputText}
@@ -34,14 +34,13 @@ export default function LoginScreen() {
       />
       <Pressable
         style={styles.button}
-        onPress={() => setUserLogged(prevState => !prevState)}>
+        onPress={() => navigation.navigate("Welcome")}>
         <Text style={styles.buttonText}>
            Log In
         </Text>
       </Pressable>
-      </>
-      
-}
+      {/* </>} */}
+
     </ScrollView>
   );
 }
@@ -49,6 +48,7 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#333333',
   },
   headerText: {
     padding: 40,

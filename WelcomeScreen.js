@@ -1,8 +1,8 @@
 
-import { ScrollView, Text, StyleSheet, Image, View, useColorScheme, Appearance } from 'react-native';
+import { ScrollView, Text, StyleSheet, Image, View, useColorScheme, Appearance, Pressable } from 'react-native';
 import { useEffect, useState } from 'react';
 
-export default function WelcomeScreen() {
+export default function WelcomeScreen({navigation}) {
 
    const colorScheme = useColorScheme();
   // const [colorScheme, setColorScheme] = useState(Appearance.getColorScheme());
@@ -57,6 +57,9 @@ export default function WelcomeScreen() {
         to hear more about your experience with us!
       </Text>
       <Text>Mode: {colorScheme}</Text>
+      <Pressable style={styles.button} onPress={()=> navigation.goBack()}>
+        <Text style={styles.buttonText}>Go back</Text>
+      </Pressable>
     </ScrollView>
   );
 }
@@ -93,5 +96,20 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     borderRadius: 20,
-  }
+  },
+  button: {
+    fontSize: 22,
+    padding: 10,
+    marginVertical: 8,
+    margin: 100,
+    backgroundColor: '#EE9972',
+    borderColor: '#EE9972',
+    borderWidth: 2,
+    borderRadius: 50
+  },
+  buttonText: {
+    color: 'black',
+    textAlign: 'center',
+    fontSize: 25,
+  },
 });

@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import {
+  ActivityIndicator,
+  FlatList,
+  Text,
+  View,
+  StyleSheet,
+  SafeAreaView,
+} from 'react-native';
 
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+
 
 const menuItemsToDisplay = [
   { name: 'Hummus', price: '$5.00', id: '1A' },
@@ -29,12 +37,34 @@ const menuItemsToDisplay = [
 const Item = ({ name, price }) => (
   <View style={menuStyles.innerContainer}>
     <Text style={menuStyles.itemText}>{name}</Text>
-    <Text style={menuStyles.itemText}>{price}</Text>
+    <Text style={menuStyles.itemText}>{'$' +price}</Text>
   </View>
 );
 
 const MenuItemsFlatList = () => {
   const renderItem = ({ item }) => <Item name={item.name} price={item.price} />;
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+
+  
+ const getMenu = async () => {
+  try {
+    const response = await fetch(
+    'https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/littleLemonSimpleMenu.json'
+    );
+    const json = await response.json();
+    setData(json.menu);
+    console.log(json.menu);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+    useEffect(() => {
+    getMenu();
+  }, []);
 
   return (
     <View style={menuStyles.container}>
@@ -49,6 +79,7 @@ const MenuItemsFlatList = () => {
 const menuStyles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#333333',
   },
   innerContainer: {
     paddingHorizontal: 40,

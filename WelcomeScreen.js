@@ -56,10 +56,24 @@ export default function WelcomeScreen({navigation}) {
         and classic cocktails in a lively but casual environment. We would love
         to hear more about your experience with us!
       </Text>
-      <Text>Mode: {colorScheme}</Text>
+      {/* <Text>Mode: {colorScheme}</Text> */}
+      <View style={
+        {flex: 1,
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+        }
+      }>
       <Pressable style={styles.button} onPress={()=> navigation.goBack()}>
         <Text style={styles.buttonText}>Go back</Text>
       </Pressable>
+      <Pressable style={styles.button} onPress={()=> navigation.navigate("MenuItems")}>
+        <Text style={styles.buttonText}>View Menu</Text>
+      </Pressable>
+      <Pressable style={styles.button} onPress={()=> navigation.navigate("Preferences")}>
+        <Text style={styles.buttonText}>Preferences</Text>
+      </Pressable>
+      </View>
+      
     </ScrollView>
   );
 }
@@ -86,7 +100,7 @@ const styles = StyleSheet.create({
 
   },
   regularText: {
-    fontSize: 24,
+    fontSize: 18,
     padding: 20,
     marginVertical: 8,
 
@@ -98,10 +112,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   button: {
-    fontSize: 22,
-    padding: 10,
+    padding: 5,
     marginVertical: 8,
-    margin: 100,
+    margin: 30,
     backgroundColor: '#EE9972',
     borderColor: '#EE9972',
     borderWidth: 2,
@@ -110,6 +123,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'black',
     textAlign: 'center',
-    fontSize: 25,
+    fontSize: 18,
   },
 });
